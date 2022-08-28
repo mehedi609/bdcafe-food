@@ -1,11 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Layout from './components/Layout/Layout';
+import Routes from './components/routes/Routes';
 
 export default function App() {
-  return (
-    <div className="App">
-      <Layout />
-    </div>
-  );
+  const renderApp = () => {
+    return <Routes />;
+  };
+  return <div className="App">{renderApp()}</div>;
 }
