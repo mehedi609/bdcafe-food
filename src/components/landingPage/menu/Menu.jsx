@@ -1,5 +1,5 @@
-import React from 'react';
-import Typed from 'react-typed';
+import React, { useEffect, useRef } from 'react';
+import Typed from 'typed.js';
 
 import image1 from '../../../assets/addl-images/breakfast-thali.jpeg';
 import image2 from '../../../assets/addl-images/italian-cobmo-meal.jpeg';
@@ -7,21 +7,32 @@ import image3 from '../../../assets/addl-images/enchilladas.jpeg';
 import './Menu.css';
 
 export default function Menu() {
+  const typingAnimation = useRef(null);
+
+  useEffect(() => {
+    const typed = new Typed(typingAnimation.current, {
+      strings: [
+        'Our Daily Specials',
+        'Burger Bonanza',
+        'Sumptuous Salads',
+        'Southern Delicacies',
+      ], // Strings to display
+      typeSpeed: 40,
+      backSpeed: 60,
+      loop: true,
+      showCursor: true,
+    });
+
+    // Destroying
+    return () => {
+      typed.destroy();
+    };
+  }, []);
+
   const renderMenu = () => {
     return (
       <section>
-        <Typed
-          className="typed-text"
-          strings={[
-            'Our Daily Specials',
-            'Burger Bonanza',
-            'Sumptuous Salads',
-            'Southern Delicacies',
-          ]}
-          typeSpeed={40}
-          backSpeed={60}
-          loop
-        />
+        <span className="typed-text" ref={typingAnimation}></span>
         <div className="container">
           <a href="/browse">
             <div className="d-flex justify-content-center align-items-center flex-wrap">
